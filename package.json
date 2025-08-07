@@ -1,0 +1,72 @@
+{
+  "name": "vite-react-component-package-starter-kit",
+  "private": true,
+  "version": "1.0.0",
+  "description": "A starter kit for building React component package with Vite, TypeScript, and Storybook.",
+  "author": {
+    "name": "Hamid Yaftian",
+    "email": "hamid.yaftian@gmail.com",
+    "url": "https://github.com/hamidyfine"
+  },
+  "license": "MIT",
+  "type": "module",
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.cjs"
+      }
+    }
+  },
+  "scripts": {
+    "dev": "storybook dev -p 6006",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "build:storybook": "storybook build",
+    "build": "tsc && vite build",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "prepare": "husky"
+  },
+  "devDependencies": {
+    "@mantine/core": "^8.2.4",
+    "@storybook/builder-vite": "^9.1.1",
+    "@storybook/react": "^9.1.1",
+    "@storybook/react-vite": "^9.1.1",
+    "@testing-library/jest-dom": "^6.6.4",
+    "@testing-library/react": "^16.3.0",
+    "@testing-library/user-event": "^14.6.1",
+    "@types/node": "^24.2.0",
+    "@types/react": "^19.1.9",
+    "@types/react-dom": "^19.1.7",
+    "@vitejs/plugin-react-swc": "^4.0.0",
+    "@vitest/coverage-v8": "^3.2.4",
+    "eslint": "^9.32.0",
+    "eslint-config-reactify": "^1.0.1",
+    "eslint-plugin-jest-dom": "^5.5.0",
+    "eslint-plugin-storybook": "^9.1.1",
+    "husky": "^9.1.7",
+    "jsdom": "^26.1.0",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "storybook": "^9.1.1",
+    "typescript": "^5.9.2",
+    "vite": "^7.1.0",
+    "vite-plugin-dts": "^4.5.4",
+    "vitest": "^3.2.4"
+  },
+  "peerDependencies": {
+    "@mantine/core": "^8.2.4",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  }
+}
