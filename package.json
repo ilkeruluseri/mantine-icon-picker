@@ -58,6 +58,7 @@
     "jsdom": "^26.1.0",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
+    "sass-embedded": "^1.90.0",
     "storybook": "^9.1.1",
     "typescript": "^5.9.2",
     "vite": "^7.1.0",
@@ -68,5 +69,10 @@
     "@mantine/core": "^8.2.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
+  },
+  "dependencies": {
+    "@mantine/hooks": "^8.2.4",
+    "@tabler/icons-react": "^3.34.1",
+    "@tanstack/react-virtual": "^3.13.12"
   }
 }

@@ -1,0 +1,16 @@
+.icon-picker-list {
+    // Scrollbar
+    &::-webkit-scrollbar {
+        width: 8px;
+        border-radius: 8px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: var(--mantine-color-gray-3);
+    }
+
+    &::-webkit-scrollbar-thumb {
+        border-radius: 8px;
+        background: var(--mantine-color-gray-4);
+    }
+}
