@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
-import IconPicker from './icon-picker';
+import { IconPicker } from './icon-picker';
 
 const meta = {
-  component: IconPicker,
+    component: IconPicker,
 } satisfies Meta<typeof IconPicker>;
 
 export default meta;

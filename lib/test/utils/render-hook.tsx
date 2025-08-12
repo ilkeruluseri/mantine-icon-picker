@@ -20,9 +20,8 @@ const ProvidersWrapper = ({ children, theme }: IProps) => {
         </ThemeProvider>
     );
 };
- 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const renderHookWrapper = (hook: () => unknown, theme?: TTestThemeConfig): RenderHookResult<any, unknown> => {
+
+export const renderHookWrapper = <T,>(hook: () => T, theme?: TTestThemeConfig): RenderHookResult<T, unknown> => {
     const wrapper = ({ children }: { children: React.ReactNode }) => (
         <ProvidersWrapper theme={theme}>{children}</ProvidersWrapper>
     );
