@@ -1,26 +1,31 @@
 import './icon-picker.scss';
 
-import { ActionIcon, Flex, Group, MantineProvider, Popover, Stack, TextInput, useMantineTheme } from '@mantine/core';
+import { ActionIcon, Flex, Group, Popover, Stack, TextInput, useMantineTheme } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import * as IconSet from '@tabler/icons-react';
 import { useVirtualizer } from '@tanstack/react-virtual';
-import { type ComponentProps, type ForwardedRef, forwardRef, type JSX, useCallback, useEffect, useMemo,useRef, useState } from 'react';
+import type { ComponentProps, ForwardedRef, JSX } from 'react';
+import { forwardRef, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import { Icon } from '../icon';
 
-type TDisplayIcon = ComponentProps<typeof Icon>['name'];
-
 interface IProps {
     onChange?: (iconName: string) => void;
-    value?: string | TDisplayIcon;
+    value?: string;
 }
+
+type TDisplayIcon = ComponentProps<typeof Icon>['name'];
 
 type TIcon = {
     icon: JSX.Element;
     value: string;
 };
 
-const VirtualizedIconGrid = ({ items, onSelect, selectedIcon }: { items: TIcon[]; onSelect: (name: string) => void; selectedIcon: string; }) => {
+const VirtualizedIconGrid = ({
+    items,
+    onSelect,
+    selectedIcon,
+}: { items: TIcon[]; onSelect: (name: string) => void; selectedIcon: string }) => {
     const parentRef = useRef<HTMLDivElement>(null);
     const rowSize = 12;
     const rowHeight = 48;
@@ -39,8 +44,8 @@ const VirtualizedIconGrid = ({ items, onSelect, selectedIcon }: { items: TIcon[]
 
         const selectedRowIndex = Math.floor(selectedIndex / rowSize);
 
-        // behaviour: 'smooth' scrolls nicely, but generates a warning for some reason
-        virtualizer.scrollToIndex(selectedRowIndex, {align: 'center', behavior: 'auto'});
+        // behavior: 'smooth' scrolls nicely, but generates a warning for some reason
+        virtualizer.scrollToIndex(selectedRowIndex, { align: 'center', behavior: 'auto' });
     }, [selectedIcon, items, virtualizer]);
 
     return (
@@ -108,17 +113,16 @@ const VirtualizedIconGrid = ({ items, onSelect, selectedIcon }: { items: TIcon[]
     );
 };
 
-const IconPicker = forwardRef(({ onChange, value }: IProps, ref: ForwardedRef<HTMLButtonElement> | ForwardedRef<HTMLInputElement>) => {
+export const IconPicker = forwardRef(({ onChange, value }: IProps, ref: ForwardedRef<HTMLButtonElement> | ForwardedRef<HTMLInputElement>) => {
     const theme = useMantineTheme();
     const [is_open, { close, open }] = useDisclosure(false);
     const [selected_icon, setSelectedIcon] = useState<'' | TDisplayIcon>('');
     const icon_size = 24;
 
-    const handleIconSelect = useCallback((iconName: any) => {
+    const handleIconSelect = useCallback((iconName: string) => {
         if (!iconName) return;
         setSelectedIcon(iconName);
         onChange?.(iconName);
-        
     }, [onChange, setSelectedIcon]);
 
     const icons: TIcon[] = useMemo(() => {
@@ -171,8 +175,7 @@ const IconPicker = forwardRef(({ onChange, value }: IProps, ref: ForwardedRef<HT
     ), [icons, searchQuery]);
 
     useEffect(() => {
-        handleIconSelect(value);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        handleIconSelect(value || '');
     }, [value]);
 
     return (
@@ -186,20 +189,18 @@ const IconPicker = forwardRef(({ onChange, value }: IProps, ref: ForwardedRef<HT
             onDismiss={close}
         >
             <Popover.Target>
-                <Stack gap={0}>
-                    <ActionIcon
-                        ref={ref as ForwardedRef<HTMLButtonElement>}
-                        size="sm"
-                        variant="default"
-                        onClick={() => is_open ? close() : open()}
-                    >
-                        <Icon
-                            name={selected_icon || (value as TDisplayIcon) || 'IconQuestionMark'}
-                            size="18"
-                            stroke={1.5}
-                        />
-                    </ActionIcon>
-                </Stack>
+                <ActionIcon
+                    ref={ref as ForwardedRef<HTMLButtonElement>}
+                    size="sm"
+                    variant="default"
+                    onClick={() => is_open ? close() : open()}
+                >
+                    <Icon
+                        name={selected_icon || (value as TDisplayIcon) || 'IconQuestionMark'}
+                        size="18"
+                        stroke={1.5}
+                    />
+                </ActionIcon>
             </Popover.Target>
             <Popover.Dropdown>
                 <Stack gap="xs">
@@ -225,5 +226,3 @@ const IconPicker = forwardRef(({ onChange, value }: IProps, ref: ForwardedRef<HT
         </Popover>
     );
 });
-
-export default IconPicker;

@@ -11,4 +11,10 @@ export default [
         files: ['**/*.test.{js,jsx,ts,tsx}'],
         ...jestDom.configs['flat/recommended'],
     },
+    {
+        files: ['tsconfig.json', 'tsconfig.*.json'],
+        rules: {
+            'json/*': ['error', {'allowComments': true}],
+        },
+    },
 ];
