@@ -21,7 +21,7 @@ const ProvidersWrapper = ({ children, theme }: IProps) => {
     );
 };
 
-export const renderHookWrapper = (hook: () => unknown, theme?: TTestThemeConfig): RenderHookResult<any, unknown> => {
+export const renderHookWrapper = <T,>(hook: () => T, theme?: TTestThemeConfig): RenderHookResult<T, unknown> => {
     const wrapper = ({ children }: { children: React.ReactNode }) => (
         <ProvidersWrapper theme={theme}>{children}</ProvidersWrapper>
     );

@@ -9,7 +9,7 @@ export const Icon = ({
     name,
     ...props
 }: IIconProps) => {
-    const SelectedIcon = IconSet[name as keyof typeof IconSet] as any;
+    const SelectedIcon = IconSet[name as keyof typeof IconSet] as React.ComponentType<IconProps>;
 
     if (!SelectedIcon) {
         console.error(`Icon "${name}" not found in IconSet.`);
