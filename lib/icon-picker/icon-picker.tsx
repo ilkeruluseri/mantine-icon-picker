@@ -168,8 +168,6 @@ export const IconPicker = forwardRef(({ onChange, value }: IProps, ref: Forwarde
             icon.value !== 'createReactComponent' &&
             icon.value !== 'icons' && // These 2 caused issues and I don't know why
             icon.value !== 'iconsList' &&
-            icon.value.toLowerCase().includes('arrow') === false &&
-            icon.value.toLowerCase().includes('chevron') === false &&
             icon.value.toLowerCase().includes(searchQuery.toLowerCase())
         ))
     ), [icons, searchQuery]);
