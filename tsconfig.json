@@ -11,7 +11,7 @@
     "module": "ESNext",
 
     // The types defined in "vite/client" are included in global scope.
-    "types": ["vite/client"],
+    "types": ["vite/client", "vitest/globals"],
 
     // Do not emit compiled output files, vite will take care of the that.
     "noEmit": true,
