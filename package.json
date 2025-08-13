@@ -2,11 +2,11 @@
   "name": "vite-react-component-package-starter-kit",
   "private": true,
   "version": "1.0.0",
-  "description": "A starter kit for building React component package with Vite, TypeScript, and Storybook.",
+  "description": "A popover style icon picker made with Mantine.",
   "author": {
-    "name": "Hamid Yaftian",
-    "email": "hamid.yaftian@gmail.com",
-    "url": "https://github.com/hamidyfine"
+    "name": "İlker Uluseri",
+    "email": "ilkeruluseri@hotmail.com",
+    "url": "https://github.com/ilkeruluseri"
   },
   "license": "MIT",
   "type": "module",
@@ -34,33 +34,46 @@
     "test:watch": "vitest",
     "build:storybook": "storybook build",
     "build": "tsc && vite build",
-    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "lint": "npm run lint:scripts && npm run lint:styles",
+    "lint:scripts": "eslint . --report-unused-disable-directives --max-warnings 0 --no-warn-ignored --fix",
+    "lint:styles": "stylelint src/**/*.scss",
     "prepare": "husky"
   },
   "devDependencies": {
     "@mantine/core": "^8.2.4",
-    "@storybook/builder-vite": "^9.1.1",
-    "@storybook/react": "^9.1.1",
-    "@storybook/react-vite": "^9.1.1",
+    "@storybook/builder-vite": "^9.1.2",
+    "@storybook/react": "^9.1.2",
+    "@storybook/react-vite": "^9.1.2",
     "@testing-library/jest-dom": "^6.6.4",
     "@testing-library/react": "^16.3.0",
     "@testing-library/user-event": "^14.6.1",
-    "@types/node": "^24.2.0",
-    "@types/react": "^19.1.9",
+    "@types/node": "^24.2.1",
+    "@types/react": "^19.1.10",
     "@types/react-dom": "^19.1.7",
     "@vitejs/plugin-react-swc": "^4.0.0",
     "@vitest/coverage-v8": "^3.2.4",
-    "eslint": "^9.32.0",
-    "eslint-config-reactify": "^1.0.1",
+    "eslint": "^9.33.0",
+    "eslint-config-reactify": "^1.1.2",
     "eslint-plugin-jest-dom": "^5.5.0",
-    "eslint-plugin-storybook": "^9.1.1",
+    "eslint-plugin-storybook": "^9.1.2",
     "husky": "^9.1.7",
     "jsdom": "^26.1.0",
+    "lint-staged": "^16.1.5",
+    "postcss": "^8.5.6",
+    "postcss-preset-mantine": "^1.18.0",
+    "postcss-simple-vars": "^7.0.1",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
-    "storybook": "^9.1.1",
+    "sass-embedded": "^1.90.0",
+    "storybook": "^9.1.2",
+    "stylelint": "^16.23.1",
+    "stylelint-config-hudochenkov": "^12.0.0",
+    "stylelint-config-sass-guidelines": "^12.1.0",
+    "stylelint-config-standard-scss": "^15.0.1",
+    "stylelint-order": "^7.0.0",
+    "stylelint-scss": "^6.12.1",
     "typescript": "^5.9.2",
-    "vite": "^7.1.0",
+    "vite": "^7.1.2",
     "vite-plugin-dts": "^4.5.4",
     "vitest": "^3.2.4"
   },
@@ -68,5 +81,18 @@
     "@mantine/core": "^8.2.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
+  },
+  "dependencies": {
+    "@mantine/hooks": "^8.2.4",
+    "@tabler/icons-react": "^3.34.1",
+    "@tanstack/react-virtual": "^3.13.12"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "npm run lint:scripts"
+    ],
+    "*.{css,scss}": [
+      "npm run lint:styles"
+    ]
   }
 }
