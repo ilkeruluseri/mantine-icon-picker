@@ -1,4 +1,4 @@
-# Mantine Icon Picler
+# Mantine Icon Picker
 
 This is an icon picker for Mantine with virtualized scrolling and search functionalities. It is performant and can handle 5000+ icons.
 
