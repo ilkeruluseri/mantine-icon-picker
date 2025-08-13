@@ -1,5 +1,6 @@
 import config from 'eslint-config-reactify';
 import storybook from 'eslint-plugin-storybook';
+import globals from 'globals';
 
 // eslint-disable-next-line tsdoc/syntax
 /** @type {import("eslint").Linter.Config} */
