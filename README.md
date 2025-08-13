@@ -1,6 +1,6 @@
-# Vite React Component Package Starter
+# Mantine Icon Picker
 
-This is a starter template for creating React component package using Vite. It includes a robust set of features to help you develop, test, and build your component efficiently.
+This is an icon picker for Mantine with virtualized scrolling and search functionalities. It is performant and can handle 5000+ icons.
 
 ## Features
 
