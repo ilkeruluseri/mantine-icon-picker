@@ -1,6 +1,6 @@
 {
   "name": "vite-react-component-package-starter-kit",
-  "private": true,
+  "private": false,
   "version": "1.0.0",
   "description": "A popover style icon picker made with Mantine.",
   "author": {
