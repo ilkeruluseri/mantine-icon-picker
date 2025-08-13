@@ -2,11 +2,11 @@
   "name": "vite-react-component-package-starter-kit",
   "private": true,
   "version": "1.0.0",
-  "description": "A starter kit for building React component package with Vite, TypeScript, and Storybook.",
+  "description": "A popover style icon picker made with Mantine.",
   "author": {
-    "name": "Hamid Yaftian",
-    "email": "hamid.yaftian@gmail.com",
-    "url": "https://github.com/hamidyfine"
+    "name": "İlker Uluseri",
+    "email": "ilkeruluseri@hotmail.com",
+    "url": "https://github.com/ilkeruluseri"
   },
   "license": "MIT",
   "type": "module",
