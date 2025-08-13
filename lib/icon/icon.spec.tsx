@@ -1,5 +1,5 @@
 // Icon.test.tsx
-import { cleanup,fireEvent,render, screen } from '@testing-library/react';
+import { cleanup, fireEvent, render, screen } from '@testing-library/react';
 
 vi.mock('@tabler/icons-react', () => {
     const MockIcon =
