@@ -28,8 +28,19 @@ export default defineConfig({
     ],
     test: {
         coverage: {
-            all: false,
+            all: true,
             enabled: true,
+            exclude: [
+                'lib/test/**',
+                'lib/index.ts',
+                'lib/**/index.ts',
+                'lib/**/types.ts',
+                'lib/**/types.d.ts',
+                'lib/**/*.stories.tsx',
+                '.storybook',
+                '*.config.*',
+            ],
+            provider: 'v8',
         },
         environment: 'jsdom',
         globals: true,

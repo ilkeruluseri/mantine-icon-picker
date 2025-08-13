@@ -1,14 +1,15 @@
-import type { RenderOptions, RenderResult } from '@testing-library/react';
-import { render } from '@testing-library/react';
+import { render as RenderReactTest, type RenderResult } from '@testing-library/react';
+import type { PropsWithChildren } from 'react';
 
 import { ThemeProvider } from './theme-provider';
-import type { TTestThemeConfig } from './type';
 
-export const renderWrapper = (ui: React.ReactNode, theme?: TTestThemeConfig, options?: RenderOptions): RenderResult => {
-    return render(
-        <ThemeProvider {...theme}>
-            {ui}
-        </ThemeProvider>,
-        options,
-    );
-};
+export function renderWrapper(ui: React.ReactNode): RenderResult {
+    // eslint-disable-next-line react/jsx-no-useless-fragment
+    return RenderReactTest(<>{ui}</>, {
+        wrapper: ({ children }: PropsWithChildren) => (
+            <ThemeProvider env="test">
+                {children}
+            </ThemeProvider>
+        ),
+    });
+}

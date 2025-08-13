@@ -1,29 +1,22 @@
-import type { MantineThemeOverride } from '@mantine/core';
-import { createTheme  } from '@mantine/core';
 import type { RenderHookResult } from '@testing-library/react';
-import { renderHook } from '@testing-library/react';
+import { renderHook as renderHookLibrary } from '@testing-library/react';
+import type { PropsWithChildren } from 'react';
 
 import { ThemeProvider } from './theme-provider';
-import type { TTestThemeConfig } from './type';
-
-interface IProps {
-    children: React.ReactNode;
-    theme?: TTestThemeConfig;
-}
 
 // Render Wrapper for Hooks and non-UI components
 // eslint-disable-next-line react-refresh/only-export-components
-const ProvidersWrapper = ({ children, theme }: IProps) => {
+const ProvidersWrapper = ({ children }: PropsWithChildren) => {
     return (
-        <ThemeProvider theme={theme ? createTheme(theme as MantineThemeOverride) : undefined}>
+        <ThemeProvider env="test">
             {children}
         </ThemeProvider>
     );
 };
 
-export const renderHookWrapper = <T,>(hook: () => T, theme?: TTestThemeConfig): RenderHookResult<T, unknown> => {
-    const wrapper = ({ children }: { children: React.ReactNode }) => (
-        <ProvidersWrapper theme={theme}>{children}</ProvidersWrapper>
+export const renderHookWrapper = <T,>(hook: () => T): RenderHookResult<T, unknown> => {
+    const wrapper = ({ children }: PropsWithChildren) => (
+        <ProvidersWrapper>{children}</ProvidersWrapper>
     );
-    return renderHook(hook, { wrapper });
+    return renderHookLibrary(hook, { wrapper });
 };
