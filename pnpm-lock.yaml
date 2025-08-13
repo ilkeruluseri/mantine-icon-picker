@@ -64,14 +64,8 @@ importers:
         specifier: ^9.33.0
         version: 9.33.0
       eslint-config-reactify:
-        specifier: ^1.1.2
-        version: 1.1.2(@testing-library/dom@10.4.1)(eslint@9.33.0)(jest@30.0.5(@types/node@24.2.1)(esbuild-register@3.6.0(esbuild@0.25.8)))
-      eslint-plugin-jest:
-        specifier: ^29.0.1
-        version: 29.0.1(@typescript-eslint/eslint-plugin@8.39.0(@typescript-eslint/parser@8.39.0(eslint@9.33.0)(typescript@5.9.2))(eslint@9.33.0)(typescript@5.9.2))(eslint@9.33.0)(jest@30.0.5(@types/node@24.2.1)(esbuild-register@3.6.0(esbuild@0.25.8)))(typescript@5.9.2)
-      eslint-plugin-jest-dom:
-        specifier: ^5.5.0
-        version: 5.5.0(@testing-library/dom@10.4.1)(eslint@9.33.0)
+        specifier: ^1.1.3
+        version: 1.1.3(@testing-library/dom@10.4.1)(eslint@9.33.0)(jest@30.0.5(@types/node@24.2.1)(esbuild-register@3.6.0(esbuild@0.25.8)))
       eslint-plugin-storybook:
         specifier: ^9.1.2
         version: 9.1.2(eslint@9.33.0)(storybook@9.1.2(@testing-library/dom@10.4.1)(vite@7.1.2(@types/node@24.2.1)(sass-embedded@1.90.0)(sass@1.90.0)(sugarss@5.0.1(postcss@8.5.6))(yaml@2.8.1)))(typescript@5.9.2)
@@ -577,10 +571,6 @@ packages:
 
   '@eslint/eslintrc@3.3.1':
     resolution: {integrity: sha512-gtF186CXhIl1p4pJNGZw8Yc6RlshoePRvE0X91oPGb3vZ8pM3qOS9W9NGPat9LziaBV7XrJWGylNQXkGcnM3IQ==}
-    engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
-
-  '@eslint/js@9.32.0':
-    resolution: {integrity: sha512-BBpRFZK3eX6uMLKz8WxFOBIFFcGFJ/g8XuwjTHCqHROSIsopI+ddn/d5Cfh36+7+e5edVS8dbSHnBNhrLEX0zg==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
   '@eslint/js@9.33.0':
@@ -2119,8 +2109,8 @@ packages:
     resolution: {integrity: sha512-TtpcNJ3XAzx3Gq8sWRzJaVajRs0uVxA2YAkdb1jm2YkPz4G6egUFAyA3n5vtEIZefPk5Wa4UXbKuS5fKkJWdgA==}
     engines: {node: '>=10'}
 
-  eslint-config-reactify@1.1.2:
-    resolution: {integrity: sha512-VyGhR029uADt2F4iJZP2rFp3gvZGrJD5LlJdY/fVUIgyuOcoKD/VZZsEaiowXgLdFmXYAA9ogK3HMSVW0cHw0g==}
+  eslint-config-reactify@1.1.3:
+    resolution: {integrity: sha512-5QgKE+NbGKwKJIOGhG6tli+RJyCfrEUjmi8QGuJdudBy1VlWN131iGmRVsa+BL5MRFbIEkJMhCUEMeoz5thqdg==}
     peerDependencies:
       eslint: ^9.32.0
 
@@ -4943,8 +4933,6 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@eslint/js@9.32.0': {}
-
   '@eslint/js@9.33.0': {}
 
   '@eslint/object-schema@2.1.6': {}
@@ -6683,9 +6671,10 @@ snapshots:
 
   escape-string-regexp@4.0.0: {}
 
-  eslint-config-reactify@1.1.2(@testing-library/dom@10.4.1)(eslint@9.33.0)(jest@30.0.5(@types/node@24.2.1)(esbuild-register@3.6.0(esbuild@0.25.8))):
+  eslint-config-reactify@1.1.3(@testing-library/dom@10.4.1)(eslint@9.33.0)(jest@30.0.5(@types/node@24.2.1)(esbuild-register@3.6.0(esbuild@0.25.8))):
+
     dependencies:
-      '@eslint/js': 9.32.0
+      '@eslint/js': 9.33.0
       '@stylistic/eslint-plugin': 5.2.2(eslint@9.33.0)
       '@stylistic/eslint-plugin-migrate': 4.4.1(eslint@9.33.0)(typescript@5.9.2)
       '@tanstack/eslint-plugin-query': 5.83.1(eslint@9.33.0)(typescript@5.9.2)
