@@ -8,7 +8,7 @@ import { ThemeProvider } from './theme-provider';
 // eslint-disable-next-line react-refresh/only-export-components
 const ProvidersWrapper = ({ children }: PropsWithChildren) => {
     return (
-        <ThemeProvider env="test">
+        <ThemeProvider>
             {children}
         </ThemeProvider>
     );
