@@ -80,7 +80,7 @@
     "stylelint-config-standard-scss": "^15.0.1",
     "stylelint-order": "^7.0.0",
     "stylelint-scss": "^6.12.1",
-    "tabler-dynamic-icon": "^1.1.9",
+    "tabler-dynamic-icon": "^1.1.10",
     "typescript": "^5.9.2",
     "vite": "^7.1.2",
     "vite-plugin-dts": "^4.5.4",
@@ -93,7 +93,7 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-window": "^1.8.11",
-    "tabler-dynamic-icon": "^1.1.9"
+    "tabler-dynamic-icon": "^1.1.10"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [

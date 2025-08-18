@@ -127,8 +127,8 @@ importers:
         specifier: ^6.12.1
         version: 6.12.1(stylelint@16.23.1(typescript@5.9.2))
       tabler-dynamic-icon:
-        specifier: ^1.1.9
-        version: 1.1.9(@tabler/icons-react@3.34.1(react@19.1.1))(@tabler/icons-webfont@3.34.1)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)
+        specifier: ^1.1.10
+        version: 1.1.10(@tabler/icons-react@3.34.1(react@19.1.1))(@tabler/icons-webfont@3.34.1)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)
       typescript:
         specifier: ^5.9.2
         version: 5.9.2
@@ -4783,8 +4783,8 @@ packages:
     resolution: {integrity: sha512-9kY+CygyYM6j02t5YFHbNz2FN5QmYGv9zAjVp4lCDjlCw7amdckXlEt/bjMhUIfj4ThGRE4gCUH5+yGnNuPo5A==}
     engines: {node: '>=10.0.0'}
 
-  tabler-dynamic-icon@1.1.9:
-    resolution: {integrity: sha512-1moOp7XV4nwj2pDWWbJjeRKiB0Jd5Onng6hQATHpw+s9JxvPq1jX7D9Y5h7XAkBEZYtGTMu5oUhYVL4QUAaMfA==}
+  tabler-dynamic-icon@1.1.10:
+    resolution: {integrity: sha512-CjyUicWUb2FWEluV0JHz7xQEHN7jzKMVB4vM+ZUV3g96qq5nbEciaNyWC6MxI30G8ZhZkmvn/viq28VX8ST0UQ==}
     peerDependencies:
       '@tabler/icons-react': ^3.34.1
       '@tabler/icons-webfont': ^3.34.1
@@ -10471,7 +10471,7 @@ snapshots:
       string-width: 4.2.3
       strip-ansi: 6.0.1
 
-  tabler-dynamic-icon@1.1.9(@tabler/icons-react@3.34.1(react@19.1.1))(@tabler/icons-webfont@3.34.1)(react-dom@19.1.1(react@19.1.1))(react@19.1.1):
+  tabler-dynamic-icon@1.1.10(@tabler/icons-react@3.34.1(react@19.1.1))(@tabler/icons-webfont@3.34.1)(react-dom@19.1.1(react@19.1.1))(react@19.1.1):
     dependencies:
       '@tabler/icons-react': 3.34.1(react@19.1.1)
       '@tabler/icons-webfont': 3.34.1

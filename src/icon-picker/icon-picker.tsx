@@ -1,4 +1,5 @@
 import './icon-picker.scss';
+import 'tabler-dynamic-icon/style.css';
 
 import { ActionIcon, Box, Flex, Popover, Stack, Text, TextInput } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
