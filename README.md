@@ -23,12 +23,13 @@ A fast, virtualized **icon picker** for React, built on **Mantine** and **react-
 ```bash
 # with pnpm
 pnpm add mantine-icon-picker @mantine/core @mantine/hooks react-window clsx
-# install these as well, if you want to use built-in Tabler icons
-# Check tabler-dynamic-icon package for installation guide
-pnpm add tabler-dynamic-icon @tabler/icons-webfont
+
+# install this icon package as well, if you want to use built-in icons
+# Check tabler-dynamic-icon doc for importing `@tabler/icons-webfont` css file only.
+pnpm add @tabler/icons-webfont
 ```
 
-> `tabler-dynamic-icon` is **default**, but optional.
+This component should be used inside a project using mantine. MantineProvider is need for this component as well.
 
 ### Required styles
 
@@ -41,14 +42,23 @@ import 'mantine-icon-picker/style.css';
 ## Quick Start (default with Tabler)
 
 ```tsx
-import { useState } from 'react';
+// Mantine related imports
+import { MantineProvider } from '@mantine/core';
+import '@mantine/core/styles.css';
+
+// IconPicker related imports
 import { IconPicker } from 'mantine-icon-picker';
+import 'mantine-icon-picker/style.css';
+import '@tabler/icons-webfont/dist/tabler-icons.min.css'; // Tabler Webfont Icons
+
+// Example related imports
+import { useState } from 'react';
 
 export default function Demo() {
   const [icon, setIcon] = useState<string | undefined>('alarm');
 
   return (
-    <div>
+    <MantineProvider>
       <IconPicker
         value={icon}
         onSelect={setIcon}
@@ -60,7 +70,7 @@ export default function Demo() {
       <div style={{ marginTop: 12 }}>
         Selected Icon Name: {icon || '—'}
       </div>
-    </div>
+    </MantineProvider>
   );
 }
 ```
