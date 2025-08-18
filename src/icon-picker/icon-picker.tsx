@@ -21,7 +21,7 @@ interface Props {
     itemPerColumn?: number;
     itemSize?: number;
     onSelect?: (icon: string|IconCls) => void;
-    overscan_row_count?: number;
+    overscanRowCount?: number;
     value?: string;
 }
 
@@ -36,7 +36,7 @@ export const IconPicker = ({
     itemPerColumn = 9,
     itemSize = 30,
     onSelect,
-    overscan_row_count = 4,
+    overscanRowCount = 4,
     value,
 }: Props) => {
     const [selected_icon_index, setSelectedIconIndex] = useState<number | null>(null);
@@ -129,7 +129,7 @@ export const IconPicker = ({
                     columnWidth={itemSize}
                     direction={direction}
                     height={height}
-                    overscanRowCount={overscan_row_count}
+                    overscanRowCount={overscanRowCount}
                     rowCount={Math.ceil(icons.length / itemPerColumn)}
                     rowHeight={itemSize}
                     width={(itemPerColumn * itemSize) + 9}
