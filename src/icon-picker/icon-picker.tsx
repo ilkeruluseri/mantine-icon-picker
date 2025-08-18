@@ -4,7 +4,7 @@ import 'tabler-dynamic-icon/style.css';
 import { ActionIcon, Box, Flex, Popover, Stack, Text, TextInput } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { clsx } from 'clsx';
-import { type ComponentProps, type JSX, useCallback, useEffect, useRef, useState } from 'react';
+import { type ComponentProps, type JSX, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { FixedSizeGrid, type GridChildComponentProps } from 'react-window';
 import { Icon } from 'tabler-dynamic-icon';
 import { IconsClassName } from 'tabler-dynamic-icon/classes';
@@ -58,8 +58,13 @@ export const IconPicker = ({
     const [debounced_search_query, setDebouncedSearchQuery] = useState<string>('');
     const debounceTimeout = useRef<NodeJS.Timeout | null>(null);
     const [is_open, { close, toggle }] = useDisclosure(false);
-    const icons = iconsList && iconsList.length > 0 ? iconsList : IconsClassName;
-    const [filtered_icons, setFilteredIcons] = useState<string[]>([]);
+    const icons = useMemo(() => iconsList || IconsClassName, [iconsList]);
+
+    const filtered_icons = useMemo(() => {
+        return icons
+            .filter(icon => !filterIcons.includes(icon))
+            .filter(icon => icon.toLowerCase().includes(debounced_search_query.toLowerCase()));
+    }, [icons, filterIcons, debounced_search_query]);
 
     useEffect(() => {
         if (debounceTimeout.current) {
@@ -74,13 +79,6 @@ export const IconPicker = ({
             }
         };
     }, [search_query]);
-
-    useEffect(() => {
-        setFilteredIcons(icons
-            .filter(icon => !icon?.includes(filterIcons.join(', ')))
-            .filter(icon => icon.toLowerCase().includes(debounced_search_query.toLowerCase())),
-        );
-    }, [debounced_search_query, filterIcons, icons]);
 
     useEffect(() => {
         if ((value || selected_icon) && is_open) {
