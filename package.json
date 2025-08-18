@@ -1,7 +1,7 @@
 {
   "name": "mantine-icon-picker",
   "private": false,
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A popover style icon picker made with Mantine.",
   "author": {
     "name": "İlker Uluseri",
