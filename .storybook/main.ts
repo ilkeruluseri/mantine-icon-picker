@@ -10,7 +10,7 @@ const config: StorybookConfig = {
         name: '@storybook/react-vite',
         options: {},
     },
-    stories: ['../lib/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
+    stories: ['../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
     viteFinal: async (config) => ({
         ...config,
         plugins: await withoutVitePlugins(config.plugins, ['vite:dts']), // skip dts plugin

@@ -1,0 +1,60 @@
+.icon-picker {
+    &__grid {
+        &::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        &::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            border-radius: 4px;
+            background: rgb(0 0 0 / 40%);
+
+            &:hover {
+                background: rgb(0 0 0 / 40%);
+            }
+        }
+    }
+
+    &__item {
+        $parent: &;
+
+        border-radius: var(--mantine-radius-sm);
+        cursor: pointer;
+        user-select: none;
+        transition: background-color 0.1s ease-out, border-color 0.1s ease-out;
+        will-change: background-color, border-color;
+
+        &--selected {
+            border-color: var(--mantine-color-primary-6);
+            background-color: var(--mantine-color-primary-6);
+            color: var(--mantine-color-white);
+        }
+
+        &:hover:not(#{$parent}--selected) {
+            background-color: var(--mantine-color-gray-2);
+        }
+
+        &:hover {
+            transition: background-color 0.1s ease-out;
+        }
+    }
+
+    &__icon {
+        $parent: &;
+
+        color: var(--mantine-color-gray-7);
+        transition: color 0.1s ease-out;
+        transform: translateZ(0);
+
+        &--selected {
+            color: var(--mantine-color-white);
+        }
+
+        &:hover:not(#{$parent}--selected) {
+            color: var(--mantine-color-gray-9);
+        }
+    }
+}

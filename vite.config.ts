@@ -9,13 +9,14 @@ import { peerDependencies } from './package.json';
 
 export default defineConfig({
     build: {
+        cssCodeSplit: true,
         lib: {
             cssFileName: 'style',
-            entry: resolve(__dirname, join('lib', 'index.ts')),
-            fileName: 'index',
+            entry: resolve(__dirname, join('src', 'index.ts')),
+            fileName: (_format, entryName) => `${entryName}${_format === 'es' ? '.js' : '.cjs'}`,
             formats: ['es', 'cjs'],
         },
-        minify: false,
+        minify: true,
         rollupOptions: {
             // Exclude peer dependencies from the bundle to reduce bundle size
             external: ['react/jsx-runtime', ...Object.keys(peerDependencies)],
@@ -24,19 +25,19 @@ export default defineConfig({
     },
     plugins: [
         react(),
-        dts({ rollupTypes: true }), // Output .d.ts files
+        dts({ rollupTypes: true }),
     ],
     test: {
         coverage: {
             all: true,
             enabled: true,
             exclude: [
-                'lib/test/**',
-                'lib/index.ts',
-                'lib/**/index.ts',
-                'lib/**/types.ts',
-                'lib/**/types.d.ts',
-                'lib/**/*.stories.tsx',
+                'src/test/**',
+                'src/index.ts',
+                'src/**/index.ts',
+                'src/**/types.ts',
+                'src/**/types.d.ts',
+                'src/**/*.stories.tsx',
                 '.storybook',
                 '*.config.*',
             ],
@@ -45,6 +46,6 @@ export default defineConfig({
         environment: 'jsdom',
         globals: true,
         mockReset: true,
-        setupFiles: './lib/test/setup.ts',
+        setupFiles: './src/test/setup.ts',
     },
 });

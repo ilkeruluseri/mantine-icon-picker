@@ -1,17 +1,17 @@
 import '@mantine/core/styles.css';
-import '../lib/global.css';
+import '../src/global.css';
 
 import { MantineProvider } from '@mantine/core';
 import type { Decorator, Preview } from '@storybook/react';
 
-const withMantineProvider: Decorator = (Story) => (
+const withThemeProvider: Decorator = (Story) => (
     <MantineProvider>
         <Story />
     </MantineProvider>
 );
 
 const preview: Preview = {
-    decorators: [withMantineProvider],
+    decorators: [withThemeProvider],
     parameters: {
         actions: { argTypesRegex: '^on[A-Z].*' },
         controls: {
