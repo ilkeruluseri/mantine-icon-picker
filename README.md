@@ -69,20 +69,26 @@ export default function Demo() {
 
 ## Props
 
-| Prop                 | Type             | Default          | Description                                       |
-| -------------------- | ---------------- | ---------------- | ------------------------------------------------- |
-| `color`              | `string`         | —                | Passed to Mantine `ActionIcon`.                   |
-| `defaultIcon`        | `string`         | —                | Icon shown when `value` is empty.                 |
-| `direction`          | `'ltr' \| 'rtl'` | `'ltr'`          | Grid direction.                                   |
-| `height`             | `number`         | `300`            | Grid viewport height.                             |
-| `iconComponent`      | `(props) => JSX` | —                | Custom renderer for icons.                        |
-| `iconSize`           | `number`         | —                | Size in px for default icon renderer.             |
-| `iconsList`          | `string[]`       | `IconsClassName` | Array of icon names. Default: all Tabler classes. |
-| `itemPerColumn`      | `number`         | `9`              | Grid column count.                                |
-| `itemSize`           | `number`         | `30`             | Grid cell size in px.                             |
-| `onSelect`           | `(icon) => void` | —                | Called with selected icon string.                 |
-| `overscanRowCount`   | `number`         | `4`              | Extra rows rendered above/below.                  |
-| `value`              | `string`         | —                | Controlled icon value.                            |
+| Prop                   | Type                        | Default              | Description                                                |
+| ---------------------- | --------------------------- | -------------------- | ---------------------------------------------------------- |
+| `color`                | `string`                    | —                    | Passed to Mantine `ActionIcon`.                            |
+| `defaultIcon`          | `string`                    | —                    | Icon shown when `value` is empty.                          |
+| `direction`            | `'ltr' \| 'rtl'`            | `'ltr'`              | Grid direction.                                            |
+| `filterIcons`          | `string[]`                  | `[]`                 | List of icons to exclude from the grid.                    |
+| `height`               | `number`                    | `300`                | Grid viewport height in px.                                |
+| `iconComponent`        | `(props) => JSX.Element`    | —                    | Custom renderer for icons.                                 |
+| `iconSize`             | `number`                    | —                    | Size in px for default icon renderer.                      |
+| `iconsList`            | `string[]`                  | `IconsClassName`     | Source of icon names (defaults to all Tabler class names). |
+| `itemPerColumn`        | `number`                    | `9`                  | Number of columns in the grid.                             |
+| `itemSize`             | `number`                    | `30`                 | Grid cell size in px.                                      |
+| `noIconFoundMessage`   | `string`                    | `"No icons found"`   | Message shown when search yields no results.               |
+| `noIconsInListMessage` | `string`                    | `"No icons in list"` | Message shown when `iconsList` is empty.                   |
+| `onSelect`             | `(icon: string) => void`    | —                    | Callback fired when user selects an icon.                  |
+| `overscanRowCount`     | `number`                    | `4`                  | Extra rows rendered above/below viewport.                  |
+| `searchPlaceholder`    | `string`                    | —                    | Placeholder text for the search input.                     |
+| `searchTextInputSize`  | Mantine TextInput size      | `'xs'`               | Size of the search input.                                  |
+| `showSearchBar`        | `boolean`                   | `false`              | Whether to show the search bar.                            |
+| `value`                | `string`                    | —                    | Controlled selected value.                                 |
 
 ---
 
@@ -98,6 +104,30 @@ export default function Demo() {
 
 ```tsx
 <IconPicker onSelect={(v) => console.log('picked', v)} />
+```
+
+---
+
+### 3) Custom empty messages
+
+```tsx
+<IconPicker
+  iconsList={[]}
+  noIconsInListMessage="This category has no icons"
+  noIconFoundMessage="Try a different keyword"
+/>
+```
+
+---
+
+### 4) With search bar
+
+```tsx
+<IconPicker
+  showSearchBar
+  searchPlaceholder="Search emoji..."
+  onSelect={(icon) => console.log('picked', icon)}
+/>
 ```
 
 ---
@@ -136,6 +166,7 @@ CSS hooks for customization:
 * `.icon-picker__item--selected`
 * `.icon-picker__icon`
 * `.icon-picker__icon--selected`
+* `.icon-picker__no-icons`
 
 ---
 

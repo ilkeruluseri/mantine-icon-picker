@@ -1,9 +1,9 @@
 import './icon-picker.scss';
 
-import { ActionIcon, Flex, Popover } from '@mantine/core';
+import { ActionIcon, Box, Flex, Popover, Stack, Text, TextInput } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { clsx } from 'clsx';
-import { type ComponentProps, type JSX, useCallback, useEffect, useState } from 'react';
+import { type ComponentProps, type JSX, useCallback, useEffect, useRef, useState } from 'react';
 import { FixedSizeGrid, type GridChildComponentProps } from 'react-window';
 import { Icon } from 'tabler-dynamic-icon';
 import { IconsClassName } from 'tabler-dynamic-icon/classes';
@@ -14,14 +14,20 @@ interface Props {
     color?: string;
     defaultIcon?: string;
     direction?: 'ltr' | 'rtl';
+    filterIcons?: string[];
     height?: number;
     iconComponent?: (props: { iconName: string|IconCls; iconSize?: number; isSelected?: boolean }) => JSX.Element;
     iconSize?: number;
     iconsList?: string[];
     itemPerColumn?: number;
     itemSize?: number;
+    noIconFoundMessage?: string;
+    noIconsInListMessage?: string;
     onSelect?: (icon: string|IconCls) => void;
     overscanRowCount?: number;
+    searchPlaceholder?: string;
+    searchTextInputSize?: ComponentProps<typeof TextInput>['size'];
+    showSearchBar?: boolean;
     value?: string;
 }
 
@@ -29,20 +35,51 @@ export const IconPicker = ({
     color,
     defaultIcon,
     direction = 'ltr',
+    filterIcons = [],
     height = 300,
     iconComponent,
     iconSize,
     iconsList,
     itemPerColumn = 9,
     itemSize = 30,
+    noIconFoundMessage = 'No icons found',
+    noIconsInListMessage = 'No icons in list',
     onSelect,
     overscanRowCount = 4,
+    searchPlaceholder,
+    searchTextInputSize = 'xs',
+    showSearchBar = false,
     value,
 }: Props) => {
     const [selected_icon_index, setSelectedIconIndex] = useState<number | null>(null);
     const [selected_icon, setSelectedIcon] = useState<string | IconCls | null>(null);
+    const [search_query, setSearchQuery] = useState<string>('');
+    const [debounced_search_query, setDebouncedSearchQuery] = useState<string>('');
+    const debounceTimeout = useRef<NodeJS.Timeout | null>(null);
     const [is_open, { close, toggle }] = useDisclosure(false);
     const icons = iconsList && iconsList.length > 0 ? iconsList : IconsClassName;
+    const [filtered_icons, setFilteredIcons] = useState<string[]>([]);
+
+    useEffect(() => {
+        if (debounceTimeout.current) {
+            clearTimeout(debounceTimeout.current);
+        }
+        debounceTimeout.current = setTimeout(() => {
+            setDebouncedSearchQuery(search_query);
+        }, 250);
+        return () => {
+            if (debounceTimeout.current) {
+                clearTimeout(debounceTimeout.current);
+            }
+        };
+    }, [search_query]);
+
+    useEffect(() => {
+        setFilteredIcons(icons
+            .filter(icon => !icon?.includes(filterIcons.join(', ')))
+            .filter(icon => icon.toLowerCase().includes(debounced_search_query.toLowerCase())),
+        );
+    }, [debounced_search_query, filterIcons, icons]);
 
     useEffect(() => {
         if ((value || selected_icon) && is_open) {
@@ -64,7 +101,7 @@ export const IconPicker = ({
         style,
     }: GridChildComponentProps) => {
         const index = (rowIndex * itemPerColumn) + columnIndex;
-        const iconName = icons[index] as IconCls;
+        const iconName = filtered_icons[index] as IconCls;
 
         if (!iconName) return null;
 
@@ -95,7 +132,7 @@ export const IconPicker = ({
                 )}
             </Flex>
         );
-    }, [itemPerColumn, icons, selected_icon_index, iconComponent, iconSize, handleIconClick]);
+    }, [itemPerColumn, filtered_icons, selected_icon_index, iconComponent, iconSize, handleIconClick]);
 
     return (
         <Popover
@@ -103,7 +140,7 @@ export const IconPicker = ({
             offset={2}
             opened={is_open}
             position="bottom"
-            styles={{ dropdown: { padding: 4 } }}
+            styles={{ dropdown: { padding: 8 } }}
             width="auto"
             onDismiss={close}
         >
@@ -122,20 +159,46 @@ export const IconPicker = ({
                     )}
                 </ActionIcon>
             </Popover.Target>
-            <Popover.Dropdown w={(itemPerColumn * itemSize) + 19}>
-                <FixedSizeGrid
-                    className="icon-picker__grid"
-                    columnCount={itemPerColumn}
-                    columnWidth={itemSize}
-                    direction={direction}
-                    height={height}
-                    overscanRowCount={overscanRowCount}
-                    rowCount={Math.ceil(icons.length / itemPerColumn)}
-                    rowHeight={itemSize}
-                    width={(itemPerColumn * itemSize) + 9}
-                >
-                    {GridItem}
-                </FixedSizeGrid>
+            <Popover.Dropdown w={(itemPerColumn * itemSize) + 27}>
+                <Stack gap={8}>
+                    {showSearchBar && (
+                        <TextInput
+                            placeholder={searchPlaceholder}
+                            size={searchTextInputSize}
+                            onChange={(e) => setSearchQuery(e.currentTarget.value)}
+                        />
+                    )}
+                    {filtered_icons.length > 0 ? (
+                        <FixedSizeGrid
+                            className="icon-picker__grid"
+                            columnCount={itemPerColumn}
+                            columnWidth={itemSize}
+                            direction={direction}
+                            height={height}
+                            overscanRowCount={overscanRowCount}
+                            rowCount={Math.ceil(filtered_icons.length / itemPerColumn)}
+                            rowHeight={itemSize}
+                            width={(itemPerColumn * itemSize) + 9}
+                        >
+                            {GridItem}
+                        </FixedSizeGrid>
+                    ) : (
+                        <Box
+                            bdrs="sm"
+                            className="icon-picker__no-icons"
+                            p={8}
+                            style={{ border: '1px solid var(--mantine-color-gray-2)' }}
+                        >
+                            <Text
+                                c="dimmed"
+                                size="sm"
+                                ta="center"
+                            >
+                                {debounced_search_query ? noIconFoundMessage : noIconsInListMessage}
+                            </Text>
+                        </Box>
+                    )}
+                </Stack>
             </Popover.Dropdown>
         </Popover>
     );
