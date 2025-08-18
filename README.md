@@ -1,9 +1,6 @@
 # mantine-icon-picker
 
-A fast, virtualized **icon picker** for React, built on **Mantine** and **react-window**.
-
-* By default, it uses **[`tabler-dynamic-icon`](https://www.npmjs.com/package/tabler-dynamic-icon)**.
-* But you can **replace it entirely** with your own icons — emojis, custom SVG class names, or any text-based icons.
+A fast, virtualized **icon picker** for React, built on **Mantine** and **react-window**. By default, it uses **[`tabler-dynamic-icon`](https://www.npmjs.com/package/tabler-dynamic-icon)**, but you can **replace it entirely** with your own icons — emojis, custom SVG class names, or any text-based icons.
 
 ---
 
