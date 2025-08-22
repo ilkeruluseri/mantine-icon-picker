@@ -1,13 +1,12 @@
 import './icon-picker.scss';
-import 'tabler-dynamic-icon/style.css';
+import 'tabler-dynamic-icon/styles.css';
 
 import { ActionIcon, Box, Flex, Popover, Stack, Text, TextInput } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { clsx } from 'clsx';
 import { type ComponentProps, type JSX, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { FixedSizeGrid, type GridChildComponentProps } from 'react-window';
-import { Icon } from 'tabler-dynamic-icon';
-import { IconsClassName } from 'tabler-dynamic-icon/classes';
+import { Icon , IconsClassName } from 'tabler-dynamic-icon';
 
 type IconCls = ComponentProps<typeof Icon>['cls'];
 
