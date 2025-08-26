@@ -90,6 +90,7 @@ export const IconPicker = ({
     const handleIconClick = useCallback((icon: string | IconCls) => {
         close();
         setSelectedIcon(icon);
+        setSearchQuery('');
         onSelect?.(icon);
     }, [close, onSelect]);
 
@@ -163,6 +164,7 @@ export const IconPicker = ({
                         <TextInput
                             placeholder={searchPlaceholder}
                             size={searchTextInputSize}
+                            value={search_query}
                             onChange={(e) => setSearchQuery(e.currentTarget.value)}
                         />
                     )}
