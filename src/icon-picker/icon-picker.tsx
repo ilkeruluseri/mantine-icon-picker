@@ -1,5 +1,6 @@
 import './icon-picker.scss';
 import 'tabler-dynamic-icon/styles.css';
+import '@tabler/icons-webfont/dist/tabler-icons.min.css';
 
 import { ActionIcon, Box, Flex, Popover, Stack, Text, TextInput } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
@@ -48,7 +49,7 @@ export const IconPicker = ({
     overscanRowCount = 4,
     searchPlaceholder,
     searchTextInputSize = 'xs',
-    showSearchBar = false,
+    showSearchBar = true,
     value,
 }: Props) => {
     const [selected_icon_index, setSelectedIconIndex] = useState<number | null>(null);
@@ -78,6 +79,11 @@ export const IconPicker = ({
             }
         };
     }, [search_query]);
+
+    useEffect(() => {
+        setSearchQuery('');
+        setDebouncedSearchQuery('');
+    }, [value]);
 
     useEffect(() => {
         if ((value || selected_icon) && is_open) {
