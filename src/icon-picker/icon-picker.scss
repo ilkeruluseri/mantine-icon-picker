@@ -28,9 +28,9 @@
         will-change: background-color, border-color;
 
         &--selected {
-            border-color: var(--mantine-color-primary-6);
-            background-color: var(--mantine-color-primary-6);
-            color: var(--mantine-color-white);
+            border-radius: 6px;
+            background: var(--mantine-color-blue-6);
+            stroke: var(--mantine-color-blue-6);
         }
 
         &:hover:not(#{$parent}--selected) {
