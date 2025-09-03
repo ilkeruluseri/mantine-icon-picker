@@ -60,6 +60,8 @@ export const IconPicker = ({
     const [is_open, { close, toggle }] = useDisclosure(false);
     const icons = useMemo(() => iconsList || IconsClassName, [iconsList]);
 
+    const gridRef = useRef<FixedSizeGrid>(null);
+
     const filtered_icons = useMemo(() => {
         return icons
             .filter(icon => !filterIcons.includes(icon))
@@ -92,6 +94,19 @@ export const IconPicker = ({
             else setSelectedIconIndex(null);
         }
     }, [value, is_open, selected_icon, icons]);
+
+    useEffect(() => {
+        if (selected_icon_index != null && is_open && gridRef.current) {
+            const rowIndex = Math.floor(selected_icon_index / itemPerColumn);
+
+            requestAnimationFrame(() => {
+                gridRef.current?.scrollToItem({
+                    align: 'center',
+                    rowIndex,
+                });
+            });
+        }
+    }, [selected_icon_index, is_open, itemPerColumn]);
 
     const handleIconClick = useCallback((icon: string | IconCls) => {
         close();
@@ -176,6 +191,7 @@ export const IconPicker = ({
                     )}
                     {filtered_icons.length > 0 ? (
                         <FixedSizeGrid
+                            ref={gridRef}
                             className="icon-picker__grid"
                             columnCount={itemPerColumn}
                             columnWidth={itemSize}
