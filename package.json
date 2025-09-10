@@ -35,12 +35,12 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "build:storybook": "storybook build",
-    "build": "tsc && vite build",
+    "build": "rm -rf dist && tsc && vite build",
     "lint": "npm run lint:scripts && npm run lint:styles",
     "lint:scripts": "eslint . --report-unused-disable-directives --max-warnings 0 --no-warn-ignored --fix",
     "lint:styles": "stylelint src/**/*.scss",
     "prepare": "husky",
-    "release": "release-it"
+    "release": "npm run build && release-it"
   },
   "devDependencies": {
     "@mantine/core": "^8.2.5",
