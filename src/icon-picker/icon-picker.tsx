@@ -1,5 +1,6 @@
 import './icon-picker.scss';
 import 'tabler-dynamic-icon/styles.css';
+import '@tabler/icons-webfont/dist/tabler-icons.min.css';
 
 import { ActionIcon, Box, Flex, Popover, Stack, Text, TextInput } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
@@ -48,7 +49,7 @@ export const IconPicker = ({
     overscanRowCount = 4,
     searchPlaceholder,
     searchTextInputSize = 'xs',
-    showSearchBar = false,
+    showSearchBar = true,
     value,
 }: Props) => {
     const [selected_icon_index, setSelectedIconIndex] = useState<number | null>(null);
@@ -58,6 +59,8 @@ export const IconPicker = ({
     const debounceTimeout = useRef<NodeJS.Timeout | null>(null);
     const [is_open, { close, toggle }] = useDisclosure(false);
     const icons = useMemo(() => iconsList || IconsClassName, [iconsList]);
+
+    const gridRef = useRef<FixedSizeGrid>(null);
 
     const filtered_icons = useMemo(() => {
         return icons
@@ -80,6 +83,11 @@ export const IconPicker = ({
     }, [search_query]);
 
     useEffect(() => {
+        setSearchQuery('');
+        setDebouncedSearchQuery('');
+    }, [value]);
+
+    useEffect(() => {
         if ((value || selected_icon) && is_open) {
             const iconIndex = value ? icons.findIndex(iconName => iconName === value) : icons.findIndex(iconName => iconName === selected_icon);
             if (iconIndex !== -1) setSelectedIconIndex(iconIndex);
@@ -87,9 +95,23 @@ export const IconPicker = ({
         }
     }, [value, is_open, selected_icon, icons]);
 
+    useEffect(() => {
+        if (selected_icon_index != null && is_open && gridRef.current) {
+            const rowIndex = Math.floor(selected_icon_index / itemPerColumn);
+
+            requestAnimationFrame(() => {
+                gridRef.current?.scrollToItem({
+                    align: 'center',
+                    rowIndex,
+                });
+            });
+        }
+    }, [selected_icon_index, is_open, itemPerColumn]);
+
     const handleIconClick = useCallback((icon: string | IconCls) => {
         close();
         setSelectedIcon(icon);
+        setSearchQuery('');
         onSelect?.(icon);
     }, [close, onSelect]);
 
@@ -163,11 +185,13 @@ export const IconPicker = ({
                         <TextInput
                             placeholder={searchPlaceholder}
                             size={searchTextInputSize}
+                            value={search_query}
                             onChange={(e) => setSearchQuery(e.currentTarget.value)}
                         />
                     )}
                     {filtered_icons.length > 0 ? (
                         <FixedSizeGrid
+                            ref={gridRef}
                             className="icon-picker__grid"
                             columnCount={itemPerColumn}
                             columnWidth={itemSize}

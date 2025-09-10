@@ -29,8 +29,10 @@
 
         &--selected {
             border-color: var(--mantine-primary-color-filled);
+            border-radius: var(--mantine-radius-sm);
             background-color: var(--mantine-primary-color-filled);
             color: var(--mantine-color-white);
+            stroke: var(--mantine-primary-color-filled);
         }
 
         &:hover:not(#{$parent}--selected) {
