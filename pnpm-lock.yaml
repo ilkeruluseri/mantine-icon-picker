@@ -58,8 +58,8 @@ importers:
         specifier: ^19.2.2
         version: 19.2.2(@types/react@19.2.2)
       '@types/react-window':
-        specifier: ^2.0.0
-        version: 2.0.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+        specifier: ^1.8.8
+        version: 1.8.8
       '@vitejs/plugin-react-swc':
         specifier: ^4.2.1
         version: 4.2.1(vite@7.2.2(@types/node@24.10.0)(jiti@2.5.1)(sass-embedded@1.90.0)(sass@1.90.0)(sugarss@5.0.1(postcss@8.5.6))(yaml@2.8.1))
@@ -1600,9 +1600,8 @@ packages:
     peerDependencies:
       '@types/react': ^19.2.0
 
-  '@types/react-window@2.0.0':
-    resolution: {integrity: sha512-E8hMDtImEpMk1SjswSvqoSmYvk7GEtyVaTa/GJV++FdDNuMVVEzpAClyJ0nqeKYBrMkGiyH6M1+rPLM0Nu1exQ==}
-    deprecated: This is a stub types definition. react-window provides its own type definitions, so you do not need this installed.
+  '@types/react-window@1.8.8':
+    resolution: {integrity: sha512-8Ls660bHR1AUA2kuRvVG9D/4XpRC6wjAaPT9dil7Ckc76eP9TKWZwwmgfq8Q1LANX3QNDnoU4Zp48A3w+zK69Q==}
 
   '@types/react@19.2.2':
     resolution: {integrity: sha512-6mDvHUFSjyT2B2yeNx2nUgMxh9LtOWvkhIU3uePn2I2oyNymUAX1NIsdgviM4CH+JSrp2D2hsMvJOkxY+0wNRA==}
@@ -6742,12 +6741,9 @@ snapshots:
     dependencies:
       '@types/react': 19.2.2
 
-  '@types/react-window@2.0.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0)':
+  '@types/react-window@1.8.8':
     dependencies:
-      react-window: 1.8.11(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
-    transitivePeerDependencies:
-      - react
-      - react-dom
+      '@types/react': 19.2.2
 
   '@types/react@19.2.2':
     dependencies:
